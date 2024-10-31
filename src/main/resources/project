@@ -1,4 +1,4 @@
-package org.example;
+
     /*
      * basit bir depo projesi
      *
@@ -22,7 +22,8 @@ package org.example;
      *      urunuRafaKoy    ==> listeden urunu sececegiz ve id numarasina gore urunu rafa koyacagiz.
      *
      *      urunCikisi      ==> listeden urunu sececegiz ve urunun cikis yapcagiz. burada urun listesinden sadece miktarda degisiklik yapilacak.
-     *                          urun adedi 0dan az olamaz. 0 olunca urun tanimlamasi silinmesin. sadece miktari 0 olsun.  ///exception urun adedi 0 altina duserse exeption firlatabilirsin
+     *                          urun adedi 0dan az olamaz. 0 olunca urun tanimlamasi silinmesin. sadece miktari 0 olsun.
+     ///exception urun adedi 0 altina duserse exeption firlatabilirsin
      *      ===> yaptigimiz tum degisiklikler listede de gorunsun.
      *
      *
@@ -51,6 +52,3 @@ package org.example;
      *
      *
      */ // 09/11/2024 tarihinde sunulacak
-    public class DepoProject {
-
-}
