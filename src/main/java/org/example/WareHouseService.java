@@ -1,10 +1,14 @@
 package org.example;
 
-import java.util.Scanner;
+import java.util.*;
 
 
 public class WareHouseService {
-        public static Scanner input;
+        Scanner input = new Scanner(System.in);
+
+        ProductPOJO nesne = new ProductPOJO(123,"un","hekimoglu",100,"kg","kenar");
+        private static Map<Integer, ProductPOJO> deneme = new HashMap<>();
+        //9 ve 10 Satir Deneme Icin Olusturuldu Dikkate Almayiniz
 
         public void mainMenu(){
             //------Depo Giris Ekranidir Secimlerin Yapilmasi ve Islemlerin Baslatilmasi bu Kisimda Kodlanacaktir.
@@ -41,6 +45,25 @@ public class WareHouseService {
             // oncelikle veri girilecek urun id kullanicidan istenip id ye gore urun miktar kaydi yapilacak
 
             //----YAPACCAK KISILER: ------- todo: Tayfun, Ibrahim
+                System.out.print("Lütfen Miktar Güncellemesi Yapacaginiz Urun id Giriniz: ");
+                int idFromUser = input.nextInt();;
+                                // todo: do while ile kodun surekliligi saglanacak
+                try {
+                        if (idFromUser > 100 && idFromUser < 110) {
+                                if (deneme.containsKey(idFromUser)) {
+                                        System.out.print("Lütfen Eklenecek Miktarı Giriniz: "); //todo: miktarin gecerliligi kontrol edilecek
+                                        int miktar = input.nextInt();
+                                        deneme.get(idFromUser).setMiktar(deneme.get(idFromUser).getMiktar() + miktar);
+                                        productView();
+                                } else {
+                                        System.out.println("Bu ID'ye sahip ürün bulunamadı.");
+                                }
+                        } else {
+                                System.out.println("Lütfen Geçerli Bir Değer Giriniz");
+                        }
+                } catch (InputMismatchException e) {
+                        System.err.println("Hatalı giriş! Lütfen bir sayı giriniz.");
+                }
         }
         public void shelfAssign(){
             // rafa koyma methodu dinamik olacak urun kaydi yapildiginda raf default ayara cekilecek
