@@ -11,6 +11,45 @@ public class WareHouseService {
         //9 ve 10 Satir Deneme Icin Olusturuldu Dikkate Almayiniz
 
         public void mainMenu(){
+                Scanner input = new Scanner(System.in);
+                int secim;
+
+                do {
+                        System.out.println("Ana Menü");
+                        System.out.println("1. Ürün Tanımla");
+                        System.out.println("2. Ürünleri Görüntüle");
+                        System.out.println("3. Yeni Ürün Girişi");
+                        System.out.println("4. Raf Atama");
+                        System.out.println("5. Ürün Çıkışı");
+                        System.out.println("0. Çıkış");
+                        System.out.print("Lütfen bir seçenek girin: ");
+
+                        secim = input.nextInt();
+                        input.nextLine(); // Buffer temizleme
+
+                        switch (secim) {
+                                case 1:
+                                        productDefine();
+                                        break;
+                                case 2:
+                                        productView();
+                                        break;
+                                case 3:
+                                        newProduct();
+                                        break;
+                                case 4:
+                                        shelfAssign();
+                                        break;
+                                case 5:
+                                        outOfProduct();
+                                        break;
+                                case 0:
+                                        System.out.println("Çıkılıyor...");
+                                        break;
+                                default:
+                                        System.out.println("Geçersiz seçim, lütfen tekrar deneyin.");
+                        }
+                } while (secim != 0);
             //------Depo Giris Ekranidir Secimlerin Yapilmasi ve Islemlerin Baslatilmasi bu Kisimda Kodlanacaktir.
             //Tasarim Kismi Bu Kisimda Olacak Yapilinca Toplu Bir Sekilde Bura Tasarimi Uzerinde Tartisilacak
             //Ozel Kutuphaneler Ile Bu Ana Ekran Suslenebilir - Amac Konsolun Goze Hitap Etmesi
