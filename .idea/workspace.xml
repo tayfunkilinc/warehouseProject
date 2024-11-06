@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3822bf8c-6a59-4f25-9e61-8bc1efe067e9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/WareHouseMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/WareHouseMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/WareHouseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/WareHouseService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +38,9 @@
     &quot;accountId&quot;: &quot;d4932f5d-26a3-44b5-b880-bc5347a59a57&quot;
   }
 }</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -57,7 +61,7 @@
     "last_opened_file_path": "C:/Users/admin/Desktop/warehouseProject",
     "onboarding.tips.debug.path": "/Users/tayfunkilinc/IdeaProjects/warehouseProject/src/main/java/org/example/Main.java",
     "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
+    "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
   }
 }]]></component>
