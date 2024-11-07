@@ -4,8 +4,9 @@ import java.util.*;
 
 
 public class WareHouseService {
-    Scanner input = new Scanner(System.in);
-
+    Scanner input = new Scanner(System.in);//kullanicidan girdi almak icin
+    private long idCounter = 1000;  // Otomatik ID üretimi için
+    private Map<Integer, ProductPOJO> products = new HashMap<>();//urunler buraya dolacak
     ProductPOJO nesne = new ProductPOJO(123, "un", "hekimoglu", 100, "kg", "kenar");
     private static Map<Integer, ProductPOJO> deneme = new HashMap<>();
     //9 ve 10 Satir Deneme Icin Olusturuldu Dikkate Almayiniz
@@ -23,13 +24,13 @@ public class WareHouseService {
         }
     }
     public void mainMenu() {
-        Scanner input = new Scanner(System.in);
+        //Scanner input = new Scanner(System.in);
         int secim;
 
         do {
             System.out.println("Ana Menü");
             System.out.println("1. Ürün Tanımla");
-            System.out.println("2. Ürünleri Görüntüle");
+            System.out.println("2. Ürünleri Listeleme");
             System.out.println("3. Yeni Ürün Girişi");
             System.out.println("4. Raf Atama");
             System.out.println("5. Ürün Çıkışı");
@@ -80,6 +81,7 @@ public class WareHouseService {
         //----YAPACCAK KISILER: ------- todo: Emircan, Aysegul
     }
 
+    // productView() start -----------------------------------------------------
     public void productView() {
         // urunListele     ==> tanimlanan urunler listelenecek.
         // urunun adeti ve raf numarasi tanimlama yapilmadiysa default deger gorunsun.
@@ -90,7 +92,14 @@ public class WareHouseService {
         //    ---------------------------------------------------------------
         //     or: 1000     un     hekimoglu   0           cuval       null
         //----YAPACCAK KISILER: -------  todo: Belkis, Merve
+    if(products.isEmpty()){//liste bos mu
+        System.out.println("Depoda urun bulunmuyor");//bos ise
+    }else {
+        System.out.println("Depodaki urunler:");//urunler listelenir
+        products.values().forEach(System.out::println);
     }
+    }
+    // productView() end -------------------------------------------------
 
     public void newProduct() {
         // urunGirisi      ==> giris yapmak istedigimiz urnunun id numarasi ile girecegiz.
@@ -224,6 +233,23 @@ public class WareHouseService {
         //===> yaptigimiz tum degisiklikler listede de gorunsun.
 
         //----YAPACCAK KISILER: ------- todo: Neval, Belkis
+        productView();
+        System.out.print("Ürün ID: ");
+        Long id = input.nextLong();
+        System.out.print("Çıkarılacak miktar: ");
+        int amount = input.nextInt();
+        ProductPOJO product = products.get(id);
+        if (product != null) {
+            if (product.getMiktar() >= amount) {
+                product.setMiktar(product.getMiktar() - amount);
+                System.out.println("Ürün çıkışı yapıldı: " + product);
+            } else {
+                System.out.println("Yetersiz stok. Çıkış yapılamadı.");
+            }
+        } else {
+            System.out.println("Ürün bulunamadı.");
+        }
+
     }
 
 
