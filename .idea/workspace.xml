@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< Updated upstream
     <list default="true" id="3822bf8c-6a59-4f25-9e61-8bc1efe067e9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/WareHouseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/WareHouseService.java" afterDir="false" />
     </list>
-=======
-    <list default="true" id="8fcba881-6baa-4186-8980-d49f13816099" name="Changes" comment="" />
->>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,23 +24,26 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
+    &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
     &quot;assignee&quot;: &quot;tayfunkilinc&quot;
-  }
-}</component>
+    }
+    }</component>
   <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/tayfunkilinc/warehouseProject.git&quot;,
     &quot;accountId&quot;: &quot;d4932f5d-26a3-44b5-b880-bc5347a59a57&quot;
-  }
-}</component>
+    }
+    }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/org/example/WareHouseService.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
-}</component>
+    &quot;associatedIndex&quot;: 5
+    }</component>
   <component name="ProjectId" id="2nz34mA6QAMq5tYbs1IBHFZa0UD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -53,7 +53,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
+    &quot;keyToString&quot;: {
     &quot;Application.WareHouseMain.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;shelfAssign&quot;,
@@ -61,14 +61,10 @@
     &quot;last_opened_file_path&quot;: &quot;C:/Users/admin/Desktop/warehouseProject&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;/Users/tayfunkilinc/IdeaProjects/warehouseProject/src/main/java/org/example/Main.java&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-<<<<<<< Updated upstream
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-=======
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
->>>>>>> Stashed changes
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
-  }
-}</component>
+    }
+    }</component>
   <component name="RunManager">
     <configuration name="WareHouseMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.WareHouseMain" />
