@@ -8,46 +8,52 @@ public class WareHouseService {
     static int id;
     static HashMap<Integer, ProductPOJO> wareHouseService;
 
-    ProductPOJO nesne = new ProductPOJO("un", "hekimoglu", 100, "kg", "kenar");
-
-    Scanner input = new Scanner(System.in);//kullanicidan girdi almak icin
-    private long idCounter = 1000;  // Otomatik ID üretimi için
-    private Map<Integer, ProductPOJO> products = new HashMap<>();//urunler buraya dolacak
-    ProductPOJO nesne = new ProductPOJO(123, "un", "hekimoglu", 100, "kg", "kenar");
-
-    private static Map<Integer, ProductPOJO> deneme = new HashMap<>();
-    //9 ve 10 Satir Deneme Icin Olusturuldu Dikkate Almayiniz
-
+    final String RESET = "\u001B[0m";
+    final String RED = "\u001B[31m";
+    final String GREEN = "\u001B[32m";
+    final String YELLOW = "\u001B[33m";
+    final String BLUE = "\u001B[34m";
+    //final String PURPLE = "\u001B[35m";
+    final String CYAN = "\u001B[36m";
 
     HashMap<Integer, Integer> shelfMap = new HashMap<>();
     int shelfCount = 10;
     int shelfCapacity = 100;
     private int QuantitytoAdd;
 
-    public WareHouseService() {
-        // Tüm rafları başlangıçta 0 dolulukla başlatıyoruz
-        for (int i = 1; i <= shelfCount; i++) {
-            shelfMap.put(i, 0);
-        }
-    }
-
     public void mainMenu() {
 
         // Scanner input = new Scanner(System.in);
+        selectedValue();
+        //------Depo Giris Ekranidir Secimlerin Yapilmasi ve Islemlerin Baslatilmasi bu Kisimda Kodlanacaktir.
+        //Tasarim Kismi Bu Kisimda Olacak Yapilinca Toplu Bir Sekilde Bura Tasarimi Uzerinde Tartisilacak
+        //Ozel Kutuphaneler Ile Bu Ana Ekran Suslenebilir - Amac Konsolun Goze Hitap Etmesi
+        //----YAPACCAK KISILER: ------- todo:Fatih ,Edip
+    }
 
-        //Scanner input = new Scanner(System.in);
+    public void selectedValue() {
+        //-----Kullanicidan Degerin Surekli Alinabilmesi Icin Dongu Olusturulmali
+        //----YAPACCAK KISILER: ------- todo:Fatih ,Edip
 
         int secim;
 
         do {
-            System.out.println("Ana Menü");
-            System.out.println("1. Ürün Tanımla");
-            System.out.println("2. Ürünleri Listeleme");
-            System.out.println("3. Yeni Ürün Girişi");
-            System.out.println("4. Raf Atama");
-            System.out.println("5. Ürün Çıkışı");
-            System.out.println("0. Çıkış");
-            System.out.print("Lütfen bir seçenek girin: ");
+            //System.out.println(CYAN + "--------------------------" + RESET);
+            System.out.println(RED + "       MAIN MENU" + RESET);
+            System.out.println(CYAN + "--------------------------" + RESET);
+            System.out.println(CYAN + "|" + GREEN + "    1. Product Define   " + CYAN + "|" + RESET);
+            System.out.println(CYAN + "--------------------------" + RESET);
+            System.out.println(CYAN + "|" + GREEN + "    2. Product View     " + CYAN + "|" + RESET);
+            System.out.println(CYAN + "--------------------------" + RESET);
+            System.out.println(CYAN + "|" + GREEN + "    3. New Product      " + CYAN + "|" + RESET);
+            System.out.println(CYAN + "--------------------------" + RESET);
+            System.out.println(CYAN + "|" + GREEN + "    4. Shelf Assign     " + CYAN + "|" + RESET);
+            System.out.println(CYAN + "--------------------------" + RESET);
+            System.out.println(CYAN + "|" + GREEN + "    5. Out of Product   " + CYAN + "|" + RESET);
+            System.out.println(CYAN + "--------------------------" + RESET);
+            System.out.println(CYAN + "|" + BLUE + "    0. Exit             " + CYAN + "|" + RESET);
+            System.out.println(CYAN + "--------------------------" + RESET);
+            System.out.print(YELLOW + "Please Select an Option: " + RESET);
 
             secim = input.nextInt();
             // input.nextLine(); // Buffer temizleme
@@ -69,21 +75,12 @@ public class WareHouseService {
                     outOfProduct();
                     break;
                 case 0:
-                    System.out.println("Çıkılıyor...");
+                    System.out.println(RED + "Exiting..." + RESET);
                     break;
                 default:
-                    System.out.println("Geçersiz seçim, lütfen tekrar deneyin.");
+                    System.out.println(RED + "Invalid Selection Please Try Again" + RESET);
             }
         } while (secim != 0);
-        //------Depo Giris Ekranidir Secimlerin Yapilmasi ve Islemlerin Baslatilmasi bu Kisimda Kodlanacaktir.
-        //Tasarim Kismi Bu Kisimda Olacak Yapilinca Toplu Bir Sekilde Bura Tasarimi Uzerinde Tartisilacak
-        //Ozel Kutuphaneler Ile Bu Ana Ekran Suslenebilir - Amac Konsolun Goze Hitap Etmesi
-        //----YAPACCAK KISILER: ------- todo:Fatih ,Edip
-    }
-
-    public void selectedValue() {
-        //-----Kullanicidan Degerin Surekli Alinabilmesi Icin Dongu Olusturulmali
-        //----YAPACCAK KISILER: ------- todo:Fatih ,Edip
     }
 
     public void productDefine() {
@@ -91,20 +88,53 @@ public class WareHouseService {
         // MAP<id,pojoUrun>   RAF="-" ve Miktar=0 //arraylist. default olarak raf ve miktar atamalari burda yapilacak
         //id ilk urun kaydinda otomatik kaydedilecek --id BEZERSIZ OLMALI
         //----YAPACCAK KISILER: ------- todo: Emircan, Aysegul
+
+        String cevap = "E";
+
+        while (cevap.equals("E")) {
+            input.nextLine();
+            System.out.print(GREEN + "Bir ürün giriniz : " + RESET);
+            String ürünİsmi = input.nextLine();
+            System.out.print(GREEN + "Ürünün üreticisi : " + RESET);
+            String üreticisi = input.nextLine();
+            int miktar = 0;
+            System.out.print(GREEN + "Ürünün birimini giriniz : " + RESET);
+            String birim = input.nextLine();
+            String raf = "-";
+            boolean mevcutMu = wareHouseService.values().stream()
+                    .anyMatch(product -> product.getUrunIsmi().equals(ürünİsmi) && product.getUretici().equals(üreticisi));
+
+            if (mevcutMu) {
+                System.out.print(GREEN + "Bu ürün ve üretici zaten mevcut!" + RESET);
+                productDefine();
+            } else {
+                ProductPOJO productPOJO = new ProductPOJO(ürünİsmi, üreticisi, miktar, birim, raf);
+
+                wareHouseService.put(id, productPOJO);
+                int var10001 = id;
+                System.out.println("\tID: " + var10001 + " " + wareHouseService.get(id));
+                id++;
+
+                System.out.print(GREEN + "Ürün eklemeye devam etmek ister misiniz?(E/H) " + RESET);
+                cevap = input.next().toUpperCase();
+            }
+        }
+
+        /*
         input.nextLine();
-        System.out.print("Bir ürün giriniz : ");
+        System.out.print(GREEN + "Bir ürün giriniz : " + RESET);
         String ürünİsmi = input.nextLine();
-        System.out.print("Ürünün üreticisi : ");
+        System.out.print(GREEN + "Ürünün üreticisi : " + RESET);
         String üreticisi = input.nextLine();
         int miktar = 0;
-        System.out.print("Ürünün birimini giriniz : ");
+        System.out.print(GREEN + "Ürünün birimini giriniz : " + RESET);
         String birim = input.nextLine();
         String raf = "-";
         boolean mevcutMu = wareHouseService.values().stream()
                 .anyMatch(product -> product.getUrunIsmi().equals(ürünİsmi) && product.getUretici().equals(üreticisi));
 
         if (mevcutMu) {
-            System.out.println("Bu ürün ve üretici zaten mevcut!");
+            System.out.print(GREEN + "Bu ürün ve üretici zaten mevcut!" + RESET);
             productDefine();
         } else {
             ProductPOJO productPOJO = new ProductPOJO(ürünİsmi, üreticisi, miktar, birim, raf);
@@ -114,18 +144,22 @@ public class WareHouseService {
             System.out.println("\tID: " + var10001 + " " + wareHouseService.get(id));
             id++;
 
-            System.out.println("Ürün eklemeye devam etmek ister misiniz? E/H girin!");
+            System.out.print(GREEN + "Ürün eklemeye devam etmek ister misiniz? E/H girin! " + RESET);
             String cevap = input.next().toUpperCase();
             if (cevap.equals("E")) {
                 this.productDefine();
             }
         }
+        */
+
     }
 
 
-
     // productView() start -----------------------------------------------------
-    /** Ürün listeleme  - Belkis - Neval */
+
+    /**
+     * Ürün listeleme  - Belkis - Neval
+     */
     public void productView() {
         // Başlık çizgisi
         System.out.println("-------------------------------------------------------------------------------------");
@@ -133,14 +167,13 @@ public class WareHouseService {
                 "ID", "PRODUCT NAME", "MANUFACTURER", "AMOUNT", "UNIT TYPE", "SHELF");
         System.out.println("-------------------------------------------------------------------------------------");
 
-        if (products.isEmpty()) {
+        if (wareHouseService.isEmpty()) {
             // Ürün yoksa mesaj
             System.out.println("Depoda ürün bulunmuyor.");
         } else {
             // Ürün bilgilerini farklı renklerde listelemek
-            products.values().forEach(product -> {
+            wareHouseService.values().forEach(product -> {
                 System.out.printf("\033[1;31m%-4s \033[1;32m| \033[1;33m%-20s \033[1;34m| \033[1;35m%-15s \033[1;36m| \033[1;37m%-10s \033[1;38m| \033[1;39m%-9s \033[1;37m| %-5s \n",
-                        product.getId(),
                         product.getUrunIsmi(),
                         product.getUretici(),
                         product.getMiktar(),
@@ -161,25 +194,24 @@ public class WareHouseService {
         // oncelikle veri girilecek urun id kullanicidan istenip id ye gore urun miktar kaydi yapilacak
 
         //----YAPACCAK KISILER: ------- todo: Tayfun, Ibrahim
-        System.out.print("Lütfen Miktar Güncellemesi Yapacaginiz Urun id Giriniz: ");
+        System.out.print(GREEN + "Lütfen Miktar Güncellemesi Yapacaginiz Urun id Giriniz: " + RESET);
         int idFromUser = input.nextInt();
-        ;
         // todo: do while ile kodun surekliligi saglanacak
         try {
             if (idFromUser > 100 && idFromUser < 110) {
-                if (deneme.containsKey(idFromUser)) {
-                    System.out.print("Lütfen Eklenecek Miktarı Giriniz: "); //todo: miktarin gecerliligi kontrol edilecek
+                if (wareHouseService.containsKey(idFromUser)) {
+                    System.out.print(GREEN + "Lütfen Eklenecek Miktarı Giriniz: " + RESET); //todo: miktarin gecerliligi kontrol edilecek
                     int miktar = input.nextInt();
-                    deneme.get(idFromUser).setMiktar(deneme.get(idFromUser).getMiktar() + miktar);
+                    wareHouseService.get(idFromUser).setMiktar(wareHouseService.get(idFromUser).getMiktar() + miktar);
                     productView();
                 } else {
-                    System.out.println("Bu ID'ye sahip ürün bulunamadı.");
+                    System.out.print(GREEN + "Bu ID'ye sahip ürün bulunamadı." + RESET);
                 }
             } else {
-                System.out.println("Lütfen Geçerli Bir Değer Giriniz");
+                System.out.print(GREEN + "Lütfen Geçerli Bir Değer Giriniz" + RESET);
             }
         } catch (InputMismatchException e) {
-            System.err.println("Hatalı giriş! Lütfen bir sayı giriniz.");
+            System.out.print(GREEN + "Hatalı giriş! Lütfen bir sayı giriniz." + RESET);
         }
     }
 
@@ -192,53 +224,51 @@ public class WareHouseService {
 
         //----YAPACCAK KISILER: ------- todo: Mustafa, Zeynep
 
-
-        deneme.put(123, new ProductPOJO("un", "hekimoglu", 100, "kg", "kenar"));
-
         // Tüm rafları başlangıçta 0 dolulukla başlatmak icin
         for (int i = 1; i <= shelfCount; i++) {
             shelfMap.put(i, 0);
         }
         // Raf doluluk durumunu göstermek için
-        System.out.println("\n---- Raf Durumu ----");
+        System.out.print(GREEN + "\n---- Raf Durumu ----" + RESET);
         for (int i = 1; i <= shelfCount; i++) {
             int currentQuantity = shelfMap.getOrDefault(i, 0); // Null olmaması için varsayılan 0 değeri
-            System.out.println("Raf " + i + ": " + currentQuantity + "/" + shelfCapacity);
+            System.out.println(GREEN + "Raf " + i + ": " + currentQuantity + "/" + shelfCapacity + RESET);
         }
         int idFromUser = -1; // Geçici başlangıç değeri
         while (true) {
-            System.out.print("Lütfen bir ürün ID numarası girin: ");
+            System.out.print(GREEN + "Lütfen bir ürün ID numarası girin: " + RESET);
             try {
 
                 idFromUser = input.nextInt();
                 // ID'nin geçerli olup olmadığını kontrol et
-                if (deneme.containsKey(idFromUser)) {
-                    System.out.println("Geçerli bir ID girdiniz.");
+                if (wareHouseService.containsKey(idFromUser)) {
+                    System.out.print(GREEN + "Geçerli bir ID girdiniz." + RESET);
                     break; // Geçerli bir ID girildiğinde döngüden çık
                 } else {
-                    System.out.println("Geçersiz bir ID numarası girdiniz. Lütfen tekrar deneyin.");
+                    System.out.print(GREEN + "Geçersiz bir ID numarası girdiniz. Lütfen tekrar deneyin." + RESET);
+
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Geçersiz giriş! Lütfen bir sayı giriniz.");
+                System.out.print(GREEN + "Geçersiz giriş! Lütfen bir sayı giriniz." + RESET);
                 input.nextLine(); // Scanner'daki hatalı girdiyi temizler
             }
         }
         // Hangi rafa atamak istediğini almak
         int selectedShelf = -1; // Geçici başlangıç değeri ,-1 genel olarak "atanmamış" anlamını taşıdığı için
         while (true) {
-            System.out.print("Lütfen ürün atamak istediğiniz raf numarasını seçin: ");
+            System.out.print(GREEN + "Lütfen ürün atamak istediğiniz raf numarasını seçin: " + RESET);
             try {
                 selectedShelf = input.nextInt();
 
                 // Raf numarasının geçerli olup olmadığını kontrol et
                 if (selectedShelf >= 1 && selectedShelf <= shelfCount) {
-                    System.out.println("Geçerli bir raf numarası girdiniz.");
+                    System.out.print(GREEN + "Geçerli bir raf numarası girdiniz." + RESET);
                     break; // Geçerli bir raf numarası girildiğinde döngüden çık
                 } else {
-                    System.out.println("Geçersiz raf numarası. Lütfen 1 ile " + shelfCount + " arasında bir numara girin.");
+                    System.out.print(GREEN + "Geçersiz raf numarası. Lütfen 1 ile " + shelfCount + " arasında bir numara girin." + RESET);
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Geçersiz giriş! Lütfen bir sayı giriniz.");
+                System.out.print(GREEN + "Geçersiz giriş! Lütfen bir sayı giriniz." + RESET);
                 input.nextLine(); // Scanner'daki hatalı girdiyi temizle
             }
         }
@@ -251,28 +281,26 @@ public class WareHouseService {
         boolean validQuantityInput = false; // Geçerli miktar kontrolü
 
         while (!validQuantityInput) {
-            System.out.print("Eklemek istediğiniz ürün miktarını girin: ");
+            System.out.print(GREEN + "Eklemek istediğiniz ürün miktarını girin: " + RESET);
             try {
                 quantityToAdd = input.nextInt(); // Kullanıcıdan miktar al
                 // Kapasiteyi kontrol et ve ekle
                 if (currentQuantity + quantityToAdd > shelfCapacity) {
-                    System.out.println("Hata: Bu kadar ürün eklemek kapasiteyi aşar! Mevcut kapasite: " + (shelfCapacity - currentQuantity));
-                    System.out.print("Lütfen mevcut raf kapasitesine göre bir miktar giriniz: ");
+                    System.out.print(GREEN + "Depodaki urunler:" + RESET);
+                    System.out.print(GREEN + "Hata: Bu kadar ürün eklemek kapasiteyi aşar! Mevcut kapasite: " + (shelfCapacity - currentQuantity) + RESET);
                 } else {
                     // Rafı güncelle
                     shelfMap.put(selectedShelf, currentQuantity + quantityToAdd);
-                    System.out.println("Ürün başarıyla eklendi. Raf " + selectedShelf + " şu anda " + shelfMap.get(selectedShelf) + "/" + shelfCapacity + " dolu.");
+                    System.out.println(GREEN + "Ürün başarıyla eklendi. Raf " + selectedShelf + " şu anda " + shelfMap.get(selectedShelf) + "/" + shelfCapacity + " dolu." + RESET);
                     validQuantityInput = true; // Geçerli miktar alındı, döngüden çık
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Hatalı giriş! Lütfen bir sayı giriniz."); // Hata mesajı
+                System.out.print(GREEN + "Hatalı giriş! Lütfen bir sayı giriniz." + RESET); // Hata mesajı
                 input.nextLine(); // Hatalı girişi temizle
             }
         }
     }
 
-
-    /** Ürün çıkışı Belkis - Merve */
 
     public void outOfProduct() {
         //yetersiz stok uyarısı alma istemiyorum.
@@ -283,29 +311,29 @@ public class WareHouseService {
 
         productView();//urun listeleme methodunu cagirdim. kullanicidan ID istiyor o yuzden liste gormem lazim. buyuk bir proje olsa olmaz
 
-        System.out.print("Ürün ID: ");
+        System.out.print(GREEN + "Ürün ID: " + RESET);
         Long id = input.nextLong();//id aldım
         //id kontrol
-        System.out.print("Çıkarılacak miktar: ");
-        int miktar = input.nextInt();//miktar aldım
-        ProductPOJO product = products.get(id);//verilen id li urunu getirdim ve product olarak kaydettim
+        System.out.print(GREEN + "Çıkarılacak miktar: " + RESET);
+        int amount = input.nextInt();//miktar aldım
+        ProductPOJO product = wareHouseService.get(id);//verilen id li urunu getirdim ve product olarak kaydettim
 
         if (product != null) {//null degilse
-            if (product.getMiktar() >= miktar) {//miktar verilen miktardan buyukse
-                product.setMiktar(product.getMiktar() - miktar);//miktari guncelliyorum
-                System.out.println("Ürün çıkışı yapıldı: " + product);
+            if (product.getMiktar() >= amount) {//miktar verilen miktardan buyukse
+                product.setMiktar(product.getMiktar() - amount);//miktari guncelliyorum
+                System.out.println(GREEN + "Ürün çıkışı yapıldı: " + product + RESET);
             } else {
-                System.out.println("Yetersiz stok. Çıkış yapılamadı. Ürün çıkışı yapabilmek için geçerli bir miktar giriniz.");
+                System.out.print(GREEN + "Yetersiz stok. Çıkış yapılamadı." + RESET);
             }
         } else {
-            System.out.println("Ürün bulunamadı.");
+            System.out.print(GREEN + "Ürün bulunamadı." + RESET);
         }
     }
+
     static {
         input = new Scanner(System.in);
         id = 100;
         wareHouseService = new HashMap<>();
     }
-
-    }
+}
 
