@@ -22,6 +22,7 @@ public class WareHouseService {
     private int QuantitytoAdd;
 
     public void mainMenu() {
+
         // Scanner input = new Scanner(System.in);
         selectedValue();
         //------Depo Giris Ekranidir Secimlerin Yapilmasi ve Islemlerin Baslatilmasi bu Kisimda Kodlanacaktir.
@@ -145,32 +146,42 @@ public class WareHouseService {
 
             System.out.print(GREEN + "Ürün eklemeye devam etmek ister misiniz? E/H girin! " + RESET);
             String cevap = input.next().toUpperCase();
-
-            if(cevap.equals("E")) {
-                productDefine();
+            if (cevap.equals("E")) {
+                this.productDefine();
             }
         }
         */
 
     }
 
-    // productView() start -----------------------------------------------------
-    public void productView() {
-        // urunListele     ==> tanimlanan urunler listelenecek.
-        // urunun adeti ve raf numarasi tanimlama yapilmadiysa default deger gorunsun.
-        //  printf(%10)
 
-        //----Ekran CIKTISI----TEmelde bu sekilde gorunmeli fakat burasida suslenebilir
-        //     id      ismi    ureticisi   miktari     birimi      raf
-        //    ---------------------------------------------------------------
-        //     or: 1000     un     hekimoglu   0           cuval       null
-        //----YAPACCAK KISILER: -------  todo: Belkis, Merve
-        if (wareHouseService.isEmpty()) {//liste bos mu
-            System.out.print(GREEN + "Depoda urun bulunmuyor" + RESET);//bos ise
+
+    // productView() start -----------------------------------------------------
+    /** Ürün listeleme  - Belkis - Neval */
+    public void productView() {
+        // Başlık çizgisi
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.printf("\033[1;37m%-4s \033[1;32m| %-20s \033[1;33m| %-15s \033[1;34m| %-10s \033[1;35m| %-9s \033[1;36m| \033[1;37m%-5s \n",
+                "ID", "PRODUCT NAME", "MANUFACTURER", "AMOUNT", "UNIT TYPE", "SHELF");
+        System.out.println("-------------------------------------------------------------------------------------");
+
+        if (products.isEmpty()) {
+            // Ürün yoksa mesaj
+            System.out.println("Depoda ürün bulunmuyor.");
         } else {
-            System.out.print(GREEN + "Depodaki urunler:" + RESET);//urunler listelenir
-            wareHouseService.values().forEach(System.out::println);
+            // Ürün bilgilerini farklı renklerde listelemek
+            products.values().forEach(product -> {
+                System.out.printf("\033[1;31m%-4s \033[1;32m| \033[1;33m%-20s \033[1;34m| \033[1;35m%-15s \033[1;36m| \033[1;37m%-10s \033[1;38m| \033[1;39m%-9s \033[1;37m| %-5s \n",
+                        product.getId(),
+                        product.getUrunIsmi(),
+                        product.getUretici(),
+                        product.getMiktar(),
+                        product.getBirim(),
+                        product.getRaf());
+            });
         }
+
+        System.out.println("-------------------------------------------------------------------------------------");
     }
     // productView() end -------------------------------------------------
 
@@ -213,11 +224,9 @@ public class WareHouseService {
         //----YAPACCAK KISILER: ------- todo: Mustafa, Zeynep
 
         // Tüm rafları başlangıçta 0 dolulukla başlatmak icin
-        /*
         for (int i = 1; i <= shelfCount; i++) {
             shelfMap.put(i, 0);
         }
-        */
         // Raf doluluk durumunu göstermek için
         System.out.print(GREEN + "\n---- Raf Durumu ----" + RESET);
         for (int i = 1; i <= shelfCount; i++) {
@@ -293,36 +302,32 @@ public class WareHouseService {
 
 
     public void outOfProduct() {
-        // urun miktar guncelemeleri id uzerinden konrollerle yapilacak
-        // urun miktarinin azaltimi yapilacak - urun cikisi yapilacak
-        //urun miktarindan fazla urun talebi oldugunda elimizdeki urun miktari belirtilip UYARI verilecek yeterli degil denebilir
-        //urun tamamen biterse raf default duruma getirilecek
-        //urun miktarinda azalma olunca raf degismeyecek
+        //yetersiz stok uyarısı alma istemiyorum.
+        //stoktaki ürünleri göstersin sadece böyle bir tercih seçeneği sunalım
+        //outOfProduct yapabilmem için ürünleri görmem gerekiyor. ürünleri göstersin
+        //id üzerinden işlem yapacağız
+        //ürün çıkışı olduktan sonra güncel miktarı söylesin. stok bitti ise söylesin.
 
-        //urun adedi 0dan az olamaz. 0 olunca urun tanimlamasi silinmesin. sadece miktari 0 olsun.
-        //exception urun adedi 0 altina duserse exeption firlatabilirsin
-        //===> yaptigimiz tum degisiklikler listede de gorunsun.
+        productView();//urun listeleme methodunu cagirdim. kullanicidan ID istiyor o yuzden liste gormem lazim. buyuk bir proje olsa olmaz
 
-        //----YAPACCAK KISILER: ------- todo: Neval, Belkis
-        productView();
         System.out.print(GREEN + "Ürün ID: " + RESET);
-        Long id = input.nextLong();
+        Long id = input.nextLong();//id aldım
+        //id kontrol
         System.out.print(GREEN + "Çıkarılacak miktar: " + RESET);
-        int amount = input.nextInt();
-        ProductPOJO product = wareHouseService.get(id);
-        if (product != null) {
-            if (product.getMiktar() >= amount) {
-                product.setMiktar(product.getMiktar() - amount);
-                System.out.print(GREEN + "Ürün çıkışı yapıldı: " + RESET);
+        int amount = input.nextInt();//miktar aldım
+        ProductPOJO product = wareHouseService.get(id);//verilen id li urunu getirdim ve product olarak kaydettim
+
+        if (product != null) {//null degilse
+            if (product.getMiktar() >= amount) {//miktar verilen miktardan buyukse
+                product.setMiktar(product.getMiktar() - amount);//miktari guncelliyorum
+                System.out.println(GREEN + "Ürün çıkışı yapıldı: " + product + RESET);
             } else {
                 System.out.print(GREEN + "Yetersiz stok. Çıkış yapılamadı." + RESET);
             }
         } else {
             System.out.print(GREEN + "Ürün bulunamadı." + RESET);
         }
-
     }
-
     static {
         input = new Scanner(System.in);
         id = 100;
