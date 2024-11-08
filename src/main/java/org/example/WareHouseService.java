@@ -155,9 +155,11 @@ public class WareHouseService {
     }
 
 
-
     // productView() start -----------------------------------------------------
-    /** Ürün listeleme  - Belkis - Neval */
+
+    /**
+     * Ürün listeleme  - Belkis - Neval
+     */
     public void productView() {
         // Başlık çizgisi
         System.out.println("-------------------------------------------------------------------------------------");
@@ -165,14 +167,13 @@ public class WareHouseService {
                 "ID", "PRODUCT NAME", "MANUFACTURER", "AMOUNT", "UNIT TYPE", "SHELF");
         System.out.println("-------------------------------------------------------------------------------------");
 
-        if (products.isEmpty()) {
+        if (wareHouseService.isEmpty()) {
             // Ürün yoksa mesaj
             System.out.println("Depoda ürün bulunmuyor.");
         } else {
             // Ürün bilgilerini farklı renklerde listelemek
-            products.values().forEach(product -> {
+            wareHouseService.values().forEach(product -> {
                 System.out.printf("\033[1;31m%-4s \033[1;32m| \033[1;33m%-20s \033[1;34m| \033[1;35m%-15s \033[1;36m| \033[1;37m%-10s \033[1;38m| \033[1;39m%-9s \033[1;37m| %-5s \n",
-                        product.getId(),
                         product.getUrunIsmi(),
                         product.getUretici(),
                         product.getMiktar(),
@@ -328,6 +329,7 @@ public class WareHouseService {
             System.out.print(GREEN + "Ürün bulunamadı." + RESET);
         }
     }
+
     static {
         input = new Scanner(System.in);
         id = 100;
