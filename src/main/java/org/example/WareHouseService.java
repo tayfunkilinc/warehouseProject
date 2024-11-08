@@ -4,10 +4,17 @@ import java.util.*;
 
 
 public class WareHouseService {
+    public static Scanner input;
+    static int id;
+    static HashMap<Integer, ProductPOJO> wareHouseService;
+
+    ProductPOJO nesne = new ProductPOJO("un", "hekimoglu", 100, "kg", "kenar");
+
     Scanner input = new Scanner(System.in);//kullanicidan girdi almak icin
     private long idCounter = 1000;  // Otomatik ID üretimi için
     private Map<Integer, ProductPOJO> products = new HashMap<>();//urunler buraya dolacak
     ProductPOJO nesne = new ProductPOJO(123, "un", "hekimoglu", 100, "kg", "kenar");
+
     private static Map<Integer, ProductPOJO> deneme = new HashMap<>();
     //9 ve 10 Satir Deneme Icin Olusturuldu Dikkate Almayiniz
 
@@ -23,8 +30,13 @@ public class WareHouseService {
             shelfMap.put(i, 0);
         }
     }
+
     public void mainMenu() {
+
+        // Scanner input = new Scanner(System.in);
+
         //Scanner input = new Scanner(System.in);
+
         int secim;
 
         do {
@@ -38,7 +50,7 @@ public class WareHouseService {
             System.out.print("Lütfen bir seçenek girin: ");
 
             secim = input.nextInt();
-            input.nextLine(); // Buffer temizleme
+            // input.nextLine(); // Buffer temizleme
 
             switch (secim) {
                 case 1:
@@ -79,6 +91,35 @@ public class WareHouseService {
         // MAP<id,pojoUrun>   RAF="-" ve Miktar=0 //arraylist. default olarak raf ve miktar atamalari burda yapilacak
         //id ilk urun kaydinda otomatik kaydedilecek --id BEZERSIZ OLMALI
         //----YAPACCAK KISILER: ------- todo: Emircan, Aysegul
+        input.nextLine();
+        System.out.print("Bir ürün giriniz : ");
+        String ürünİsmi = input.nextLine();
+        System.out.print("Ürünün üreticisi : ");
+        String üreticisi = input.nextLine();
+        int miktar = 0;
+        System.out.print("Ürünün birimini giriniz : ");
+        String birim = input.nextLine();
+        String raf = "-";
+        boolean mevcutMu = wareHouseService.values().stream()
+                .anyMatch(product -> product.getUrunIsmi().equals(ürünİsmi) && product.getUretici().equals(üreticisi));
+
+        if (mevcutMu) {
+            System.out.println("Bu ürün ve üretici zaten mevcut!");
+            productDefine();
+        } else {
+            ProductPOJO productPOJO = new ProductPOJO(ürünİsmi, üreticisi, miktar, birim, raf);
+
+            wareHouseService.put(id, productPOJO);
+            int var10001 = id;
+            System.out.println("\tID: " + var10001 + " " + wareHouseService.get(id));
+            id++;
+
+            System.out.println("Ürün eklemeye devam etmek ister misiniz? E/H girin!");
+            String cevap = input.next().toUpperCase();
+            if (cevap.equals("E")) {
+                this.productDefine();
+            }
+        }
     }
 
 
@@ -152,7 +193,7 @@ public class WareHouseService {
         //----YAPACCAK KISILER: ------- todo: Mustafa, Zeynep
 
 
-        deneme.put(123, new ProductPOJO(123, "un", "hekimoglu", 100, "kg", "kenar"));
+        deneme.put(123, new ProductPOJO("un", "hekimoglu", 100, "kg", "kenar"));
 
         // Tüm rafları başlangıçta 0 dolulukla başlatmak icin
         for (int i = 1; i <= shelfCount; i++) {
@@ -231,8 +272,8 @@ public class WareHouseService {
     }
 
 
-
     /** Ürün çıkışı Belkis - Merve */
+
     public void outOfProduct() {
         //yetersiz stok uyarısı alma istemiyorum.
         //stoktaki ürünleri göstersin sadece böyle bir tercih seçeneği sunalım
@@ -260,7 +301,11 @@ public class WareHouseService {
             System.out.println("Ürün bulunamadı.");
         }
     }
-
+    static {
+        input = new Scanner(System.in);
+        id = 100;
+        wareHouseService = new HashMap<>();
     }
 
+    }
 
