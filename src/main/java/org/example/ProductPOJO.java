@@ -2,24 +2,18 @@ package org.example;
 
 public class ProductPOJO {
 
-    private  int id;
-    private  String urunIsmi;
-    private  String uretici;
-    private  int miktar;
-    private  String birim;
-    private  String raf;
+    private String urunIsmi;
+    private String uretici;
+    private int miktar;
+    private String birim;
+    private String raf;
 
-    public ProductPOJO(int id, String urunIsmi, String uretici, int miktar, String birim, String raf) {
-        this.id = id;
+    public ProductPOJO(String urunIsmi, String uretici, int miktar, String birim, String raf) {
         this.urunIsmi = urunIsmi;
         this.uretici = uretici;
         this.miktar = miktar;
         this.birim = birim;
         this.raf = raf;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setUrunIsmi(String urunIsmi) {
@@ -40,10 +34,6 @@ public class ProductPOJO {
 
     public void setRaf(String raf) {
         this.raf = raf;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getUrunIsmi() {
@@ -68,13 +58,10 @@ public class ProductPOJO {
 
     @Override
     public String toString() {
-        return "ProductPOJO{" +
-                "id=" + id +
-                ", urunIsmi='" + urunIsmi + '\'' +
-                ", uretici='" + uretici + '\'' +
-                ", miktar=" + miktar +
-                ", birim='" + birim + '\'' +
-                ", raf='" + raf + '\'' +
-                '}';
+        return "\n\tUrunIsmi= " + this.urunIsmi +
+                "\n\tUretici= " + this.uretici +
+                "\n\tMiktar= " + this.miktar +
+                "\n\tBirim= " + this.birim +
+                "\n\tRaf= " + this.raf;
     }
 }
